@@ -2,16 +2,23 @@
 
 Namespace App\Models;
 
+use MiniMVC\DB\Model;
+
 class User extends Model
 {
 
-	public $songs;
+	private $id;
+	private $name;
+	private $email;
 
-	function __construct(argument)
-	{
-		# code...
+	public function __construct($name, $email){
+		$this->name = $name;
+		$this->email = $email;
 	}
 
-	public function songs(){}
+	public function getName(){}
+	public function setName(){}
+	public function getEmail(){}
+	public function setEmail(){}
 
 }

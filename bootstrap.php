@@ -1,4 +1,8 @@
 <?php
+
+// in order to make the PDO::quote function efficient (http://php.net/manual/fr/pdo.quote.php)
+ini_set('default_charset', 'utf-8');
+
 require_once "src/Autoloader/Psr4Autoloader.php";
 
 $loader = new Psr4AutoloaderClass;

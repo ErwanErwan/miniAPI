@@ -4,8 +4,6 @@ Namespace MiniMVC\Router;
 class Router
 {
 
-	private $uris;
-
 	public static function get($uri, $controller, $action = 'index'){}
 	public static function post(){}
 	public static function put(){}
@@ -13,20 +11,36 @@ class Router
 
 	public static function resolve($request){
 
-		$uri = $request->getUri();
-		$params = [];
+		if(!isset($_GET['ressource']) || empty($_GET['ressource']))
+			throw new \Exception("Error Processing Request", 1);
 
-		$query = parse_url($uri, PHP_URL_QUERY);
-		parse_str($query, $params);
+		$ressource = $_GET['ressource'];
+		$ressourceId = isset($_GET['id']) ? intval($_GET['id']): 0;
 		
-		$path = parse_url($uri, PHP_URL_PATH);
-		$path_components = explode('/', trim($path, '/'));
+		$controller = 'App\Controllers\\' . $ressource . 'Controller';
+		
+		if(!class_exists($controller))
+			throw new \Exception("$ressource:Ressource not found", 2);
 
-		if(count($path_components) < 1 || (count($path_components) == 1 && $path_components[0] === $request->script_fname))
-			throw new Exception("$path:ressource not found", 1);
+		switch ($request->getMethod()) {
+			case 'GET':
+			$action = ($ressourceId > 0 ? 'get': 'index');
+			break;
+			case 'PUT':
+			$action = 'update';
+			break;
+			case 'POST':
+			$action = 'create';
+			break;
+			case 'DELETE':
+			$action = 'delete';
+			break;
+			default:
+			throw new \Exception("Unhandled HTTP method", 3);
+			break;
+		}
 
-		die;
-		//return [$controller, $action, $queryparams];
+		return [$controller, $action, $ressourceId];
 	}
 
 

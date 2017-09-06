@@ -2,6 +2,5 @@
 
 use MiniMVC\Router\Router;
 
-Router::get('user/:id', 'usersController', 'get');
+// Router::get('user', 'usersController');
 
-Router::post('user', 'usersController', 'create');

@@ -2,15 +2,9 @@
 
 Namespace App\Models;
 
+use MiniMVC\DB\Model;
+
 class Song extends Model
 {
 
-	private $users;
-
-	function __construct(argument)
-	{
-		# code...
-	}
-
-	public function users(){}
 }

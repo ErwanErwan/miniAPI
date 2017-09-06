@@ -3,20 +3,16 @@ Namespace MiniMVC\HTTP;
 
 class Message {
 
-	private $method;
 	private $uri;
 	private $protocol;
+	private $body;
 
-	public function __construct(){
+	function __construct(){
 
-		$this->method = $_SERVER['REQUEST_METHOD'];
 		$this->protocol = $_SERVER['SERVER_PROTOCOL'];		
 		$this->uri = $_SERVER['REQUEST_URI'];
 	}
-
-	public function getMethod(){
-		return $this->method;
-	}
+	
 	public function getUri(){
 		return $this->uri;
 	}
