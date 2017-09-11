@@ -15,17 +15,14 @@ class songController extends ApiController
 	function __construct(){
 		$this->songRepo = new songRepository;
 	} 
-
-	public function index(){
-
-		$songs = $this->songRepo->findAll();
-		return $this->jsonResponse($songs, 200);
-
-	}
+	
 	public function get($id){
 
-		$song = $this->songRepo->find($id);
-		return $this->jsonResponse($song, 200);
+		if($id === null)
+			$data = $this->songRepo->findAll();
+		else
+			$data = $this->songRepo->find($id);
+		return $this->jsonResponse($data, 200);
 
 	}
 	
