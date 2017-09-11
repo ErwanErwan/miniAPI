@@ -12,7 +12,7 @@ class App
 	{
 		list($controller,$action, $params) = Router::resolve(new Request);
 		$ctrl = new $controller;
-		$response = $ctrl->$action($params);
+		$response = call_user_func_array(array($ctrl, $action), $params);
 		return $response;
 	}
 }

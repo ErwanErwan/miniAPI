@@ -1,5 +1,8 @@
 <?php
 
+/*
+    source : http://www.php-fig.org/psr/psr-4/examples/
+*/
 class Psr4AutoloaderClass
 {
     /**

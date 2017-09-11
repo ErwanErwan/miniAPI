@@ -5,9 +5,9 @@ use PDO;
 use PDOException;
 use Exception;
 
-/**
-* 
-*/
+use MiniMVC\Config\Config;
+
+
 class DB
 {
 
@@ -21,7 +21,6 @@ class DB
 		} catch (PDOException $e) {
 			throw new Exception($e->getMessage(), 1);
 		}
-
 	}
 
 	public function quote($str){
@@ -30,9 +29,11 @@ class DB
 
 	public static function getInstance(){
 		if(!isset(self::$instance)){
-			$dsn = 'mysql:dbname=miniapi;host=127.0.0.1';
-			$user = 'miniapi';
-			$password = 'LzVGhb5AKtnuErvh';
+			$dbconfig = Config::instance('config/app.php')->get('database');
+
+			$dsn = $dbconfig['driver'] . ':dbname=' . $dbconfig['dbname'] . ';host='. $dbconfig['host'];
+			$user = $dbconfig['user'];
+			$password = $dbconfig['password'];
 			self::$instance = new self($dsn, $user, $password);
 			return self::$instance;
 		}

@@ -1,6 +1,5 @@
 <?php
 require_once "bootstrap.php";
-require_once "routes.php";
 
 use MiniMVC\Router\Router;
 use MiniMVC\HTTP\Request;

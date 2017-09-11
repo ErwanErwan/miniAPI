@@ -21,5 +21,8 @@ class Request extends Message
 	public function getParams(){
 		return $this->params;
 	}
+	public function getParam($name){
+		return isset($this->params[$name]) ? $this->params[$name]: null;
+	}
 
 }

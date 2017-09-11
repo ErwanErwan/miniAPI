@@ -28,7 +28,5 @@ class songController extends ApiController
 		return $this->jsonResponse($song, 200);
 
 	}
-	// public function create(){}
-	// public function update(){}
-	// public function delete(){}
+	
 }

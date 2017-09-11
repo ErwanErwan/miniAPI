@@ -4,19 +4,13 @@ Namespace MiniMVC\Router;
 class Router
 {
 
-	public static function get($uri, $controller, $action = 'index'){}
-	public static function post(){}
-	public static function put(){}
-	public static function delete(){}
-
 	public static function resolve($request){
-
+		$params = $_GET;
 		if(!isset($_GET['ressource']) || empty($_GET['ressource']))
 			throw new \Exception("Error Processing Request", 1);
 
 		$ressource = $_GET['ressource'];
-		$ressourceId = isset($_GET['id']) ? intval($_GET['id']): 0;
-		
+		unset($params['ressource']);
 		$controller = 'App\Controllers\\' . $ressource . 'Controller';
 		
 		if(!class_exists($controller))
@@ -24,7 +18,7 @@ class Router
 
 		switch ($request->getMethod()) {
 			case 'GET':
-			$action = ($ressourceId > 0 ? 'get': 'index');
+			$action = 'get';
 			break;
 			case 'PUT':
 			$action = 'update';
@@ -40,7 +34,7 @@ class Router
 			break;
 		}
 
-		return [$controller, $action, $ressourceId];
+		return [$controller, $action, $params];
 	}
 
 

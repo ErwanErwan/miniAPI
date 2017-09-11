@@ -16,19 +16,14 @@ class userController extends ApiController
 		$this->userRepo = new userRepository;
 	} 
 
-	public function index(){
-
-		$users = $this->userRepo->findAll();
-		return $this->jsonResponse($users, 200);
-
-	}
 	public function get($id){
 
-		$user = $this->userRepo->find($id);
-		return $this->jsonResponse($user, 200);
+		if($id === null){
+			$data = $this->userRepo->findAll();
+		} else {
+			$data = $this->userRepo->find($id);
+		}
+		return $this->jsonResponse($data, 200);
 
 	}
-	// public function create(){}
-	// public function update(){}
-	// public function delete(){}
 }
