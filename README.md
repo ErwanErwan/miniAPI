@@ -81,7 +81,7 @@ POST http://domain.com/index.php?ressource=favorite&id_user=[id_user]
 Data
 ```json
 {
-	id_song: [id_song]
+	"id_song": 1
 }
 ```
 
